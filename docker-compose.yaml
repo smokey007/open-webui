@@ -7,6 +7,7 @@ services:
     tty: true
     restart: unless-stopped
     image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
+    env_file: stack.env
 
   open-webui:
     build:
@@ -14,6 +15,7 @@ services:
       dockerfile: Dockerfile
     image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
     container_name: open-webui
+    env_file: stack.env
     volumes:
       - /opt/ollama2/open-webui:/app/backend/data
     depends_on:
